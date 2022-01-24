@@ -31,7 +31,7 @@ class TestConceptsInit(TestCase):
     def testIterable(self):
         clist = self.getConcepts()
         concepts = skos.Concepts(clist)
-        self.assertSequenceEqual(concepts._concepts.values(), list(set(clist)))
+        self.assertSequenceEqual(list(concepts._concepts.values()), list(set(clist)))
 
 class TestConcepts(TestCase):
     """
@@ -117,7 +117,7 @@ class TestConcepts(TestCase):
         self.concepts.clear()
         clist = self.getConcepts()
         self.concepts.update(clist)
-        self.assertSequenceEqual(self.concepts._concepts.values(), list(set(clist)))
+        self.assertSequenceEqual(list(self.concepts._concepts.values()), list(set(clist)))
 
     def testEqual(self):
         other = skos.Concepts(self.getConcepts())

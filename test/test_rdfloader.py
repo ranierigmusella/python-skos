@@ -57,9 +57,9 @@ class TestUnicode(TestCase):
     def testLanguages(self):
         concept = self.loader.getConcepts()['http://portal.oceannet.org/test1/unicode']
 
-        assert concept.prefLabel == u'Concepto de prueba Unicode: ó', concept.prefLabel
-        assert concept.altLabel == u'Prueba alternativa: ó', concept.altLabel
-        assert concept.definition == u'Prueba de caracteres unicode ó', concept.definition
+        assert concept.prefLabel == 'Concepto de prueba Unicode: ó', concept.prefLabel
+        assert concept.altLabel == 'Prueba alternativa: ó', concept.altLabel
+        assert concept.definition == 'Prueba de caracteres unicode ó', concept.definition
 
 
 class TestRDFLoader(TestCase):
@@ -114,7 +114,7 @@ class TestRDFLoader(TestCase):
         concepts = self.loader.getConcepts()
         self.assertIsInstance(concepts, skos.Concepts)
         self.assertEqual(len(concepts), 6)
-        for concept in concepts.itervalues():
+        for concept in concepts.values():
             self.assertIsInstance(concept, skos.Concept)
             self.assertGreater(len(concept.uri), 1)
             self.assertGreater(len(concept.prefLabel), 1)
@@ -129,7 +129,7 @@ class TestRDFLoader(TestCase):
         schemes = self.loader.getConceptSchemes()
         self.assertIsInstance(schemes, skos.Concepts)
         self.assertEqual(len(schemes), 2)
-        for scheme in schemes.itervalues():
+        for scheme in schemes.values():
             self.assertIsInstance(scheme, skos.ConceptScheme)
             self.assertEqual(scheme.title, 'The SWAD-Europe Example Thesaurus')
             self.assertEqual(scheme.description, 'An example thesaurus to illustrate the use of the SKOS-Core schema.')
@@ -138,7 +138,7 @@ class TestRDFLoader(TestCase):
         collections = self.loader.getCollections()
         self.assertIsInstance(collections, skos.Concepts)
         self.assertEqual(len(collections), 2)
-        for collection in collections.itervalues():
+        for collection in collections.values():
             self.assertIsInstance(collection, skos.Collection)
             self.assertEqual(collection.title, 'Test Collection')
             self.assertEqual(collection.description, 'A collection of concepts used as a test')
@@ -197,7 +197,7 @@ class TestRDFUriNormalisation(TestRDFLoader):
 
     def getLoader(self, graph):
         def normalise_uri(uri):
-            return uri.rstrip(u'/')
+            return uri.rstrip('/')
         return skos.RDFLoader(graph, normalise_uri=normalise_uri)
 
 if __name__ == '__main__':

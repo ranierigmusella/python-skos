@@ -3,7 +3,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 import skos
-from test_concept import TestCase
+from .test_concept import TestCase
 
 class TestConceptScheme(TestCase):
     """

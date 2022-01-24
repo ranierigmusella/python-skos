@@ -104,7 +104,7 @@ class TestConcept(TestCase):
         self.obj.synonyms = child_concepts
 
         # check the backreferencing is working
-        for concept in child_concepts.itervalues():
+        for concept in child_concepts.values():
             self.assertIn(concept, self.obj.synonyms)
 
         # add the object to session1
@@ -129,7 +129,7 @@ class TestConcept(TestCase):
         self.obj.related = child_concepts
 
         # check the backreferencing is working
-        for concept in child_concepts.itervalues():
+        for concept in child_concepts.values():
             self.assertIn(concept, self.obj.related)
 
         # add the object to session1
@@ -169,7 +169,7 @@ class TestConcept(TestCase):
         self.assertEqual(self.obj.narrower, concept.narrower)
 
         # check the backreferencing is working
-        for child in concept.narrower.itervalues():
+        for child in concept.narrower.values():
             self.assertIn(concept, child.broader)
 
 if __name__ == '__main__':
